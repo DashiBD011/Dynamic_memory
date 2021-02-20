@@ -5,15 +5,8 @@ using std::endl;
 
 template<typename T>void Random(T& variable);
 
-void FillRand(int arr[], const int c);
-void FillRand(double arr[], const int c);
-void FillRand(float arr[], const int c);
-void FillRand(char arr[], const int c, int minrand = 48, int maxrand = 57);
-
-void FillRand(int** arr, const int m, const int n);
-void FillRand(float** arr, const int m, const int n);
-void FillRand(double** arr, const int m, const int n);
-void FillRand(char** arr, const int m, const int n, int minrand = 65, int maxrand = 90);
+template<typename T> void FillRand(T arr[], const int c);
+template<typename T> void FillRand(T** arr, const int m, const int n);
 
 template<typename T> void Print(T arr[], const int c);
 template<typename T> void Print(T** arr, const int m, const int n);
@@ -63,7 +56,7 @@ template<typename T> void erase_col(T** arr, const int m, int& n, int index);
 //#define ERASE_COL
 
 
-typedef float DataType;
+typedef double DataType;
 
 void main()
 {
@@ -234,6 +227,10 @@ void Random(T& variable)
 	}
 	else if (typeid(variable) == typeid(float) || typeid(variable) == typeid(double))
 	{
+		variable = double(rand() % 10000) / 100;
+	}
+	else if (typeid(variable) == typeid(char))
+	{
 		variable = rand();
 	}
 	else
@@ -242,47 +239,19 @@ void Random(T& variable)
 	}
 }
 
-void FillRand(int arr[], const int c)
+template<typename T>
+void FillRand(T arr[], const int c)
 {
 	for (int i = 0; i < c; i++)
 	{
 		//arr[i] = rand() % 100;
 		Random(arr[i]);
 	}
-	cout << "Массив int" << endl;
+	
 }
 
-void FillRand(double arr[], const int c)
-{
-	for (int i = 0; i < c; i++)
-	{
-		//arr[i] = double(rand() % 100) / 10;
-		Random(arr[i]);
-	}
-	cout << "Массив double" << endl;
-}
-
-void FillRand(float arr[], const int c)
-{
-	for (int i = 0; i < c; i++)
-	{
-		//arr[i] = float(rand() % 100) / 10;
-		Random(arr[i]);
-	}
-	cout << "Массив float" << endl;
-}
-
-void FillRand(char arr[], const int c, int minrand, int maxrand)
-{
-	for (int i = 0; i < c; i++)
-	{
-		//arr[i] = rand() % (maxrand - minrand) + minrand;
-		Random(arr[i]);
-	}
-	cout << "Массив char" << endl;
-}
-
-void FillRand(int** arr, const int m, const int n)
+template<typename T>
+void FillRand(T** arr, const int m, const int n)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -292,47 +261,7 @@ void FillRand(int** arr, const int m, const int n)
 			Random(arr[i][j]);
 		}
 	}
-	cout << "Массив типа int" << endl;
-}
-
-void FillRand(float** arr, const int m, const int n)
-{
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			//arr[i][j] = float(rand() % 100) / 10;
-			Random(arr[i][j]);
-		}
-	}
-	cout << "Массив типа float" << endl;
-
-}
-
-void FillRand(double** arr, const int m, const int n)
-{
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			//arr[i][j] = double(rand() % 1000) / 10;
-			Random(arr[i][j]);
-		}
-	}
-	cout << "Массив типа double" << endl;
-}
-
-void FillRand(char** arr, const int m, const int n, int minrand, int maxrand)
-{
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			//arr[i][j] = rand() % (maxrand - minrand) + minrand;
-			Random(arr[i][j]);
-		}
-	}
-	cout << "Массив типа char" << endl;
+	
 }
 
 template<typename T>
