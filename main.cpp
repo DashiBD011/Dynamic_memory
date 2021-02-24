@@ -4,13 +4,9 @@ using std::cin;
 using std::endl;
 
 #include"Arrays.h"
-#include"Arrays.cpp"
 #include"Print.h"
-#include"Print.cpp"
 #include"Memory.h"
-#include"Memory.cpp"
 #include"Random.h"
-#include"Random.cpp"
 
 //#define DYNAMIC_MEMORY1
 #define DYNAMIC_MEMORY2
@@ -29,7 +25,7 @@ using std::endl;
 //#define ERASE_COL
 
 
-typedef double DataType;
+typedef char DataType;
 
 void main()
 {
